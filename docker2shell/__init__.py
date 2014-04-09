@@ -18,8 +18,9 @@ def cmdline(container):
     workdir = config['WorkingDir']
     cmd = ' '.join(config['Cmd'])
     image = config['Image']
+    name = cont['Name'][1:]
 
-    return 'docker run {envs} {volumes} {ports} -m {memory} -c {cpu_shares} -w {workdir} --rm -t -i {image} {cmd}'.format(**locals())
+    return 'docker run {envs} {volumes} {ports} -m {memory} -c {cpu_shares} -w {workdir} --name {name} --rm -t -i {image} {cmd}'.format(**locals())
 
 def main():
     argh.dispatch_command(cmdline)
